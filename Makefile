@@ -94,7 +94,7 @@ pg_integration_test: clean_compose
 
 .PHONY: clean_compose
 clean_compose:
-	services=$$($(DOCKER_COMPOSE) ps -a --format '{{.Name}} {{.Service}}' | grep wal-g_ | cut -w -f 2); \
+	services=$$($(DOCKER_COMPOSE) ps -a --format '{{.Name}} {{.Service}}' | grep wal-g_ | cut -d" " -f 2); \
 		if [ "$$services" ]; then $(DOCKER_COMPOSE) down $$services; fi
 
 all_unittests: deps unittest
